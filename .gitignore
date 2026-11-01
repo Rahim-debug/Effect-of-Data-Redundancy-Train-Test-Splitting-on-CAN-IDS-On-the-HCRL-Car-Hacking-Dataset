@@ -1,0 +1,7 @@
+# raw and processed data are large: never commit them (data/sample IS committed)
+data/raw/
+data/processed/
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+*.pyc
