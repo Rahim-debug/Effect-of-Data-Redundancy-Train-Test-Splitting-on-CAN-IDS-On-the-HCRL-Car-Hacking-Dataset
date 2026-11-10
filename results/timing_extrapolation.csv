@@ -1,0 +1,4 @@
+model,target_rows,est_fit_minutes,est_peak_ram_gb
+LR,14000000,2.1,3.64
+DT,14000000,3.3,1.2
+RF,14000000,76.0,2.05

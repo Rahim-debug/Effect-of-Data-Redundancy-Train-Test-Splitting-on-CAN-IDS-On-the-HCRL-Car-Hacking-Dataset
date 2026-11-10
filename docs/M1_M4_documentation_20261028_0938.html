@@ -1,0 +1,965 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><title>FYDP M1-M4 documentation</title><style>body{font-family:Arial,Helvetica,sans-serif;max-width:980px;margin:24px auto;padding:0 16px;line-height:1.5;color:#111}table{border-collapse:collapse;margin:10px 0;font-size:13px}th,td{border:1px solid #bbb;padding:4px 8px;text-align:left;vertical-align:top}th{background:#eee}code,pre{background:#f5f5f5;font-size:12px}pre{padding:8px;overflow-x:auto}h1,h2,h3{margin-top:1.4em}</style></head><body><h1>FYDP Sprint 1: models track, tasks M1 to M4 - complete documentation</h1>
+<p>Generated: 2026-10-28 09:37 (machine clock) by <code>src/make_documentation.py</code>. Sections marked <strong>LIVE</strong> were read or executed at that moment.</p>
+<h2>1. Where everything is saved</h2>
+<p>Project folder (absolute path on this machine):</p>
+<p><code>/content/drive/MyDrive/FYDP/files/fydp_models_sameer/fydp_models</code></p>
+<p>On Google Drive this is the same folder: open drive.google.com and follow <code>FYDP</code> &gt; <code>files</code> &gt; <code>fydp_models_sameer</code> &gt; <code>fydp_models</code> (the exact path above, after <code>/MyDrive/</code>).</p>
+<p><strong>LIVE file inventory</strong> (what exists now, size, last modified):</p>
+<table>
+<thead>
+<tr>
+<th>File (relative to project folder)</th>
+<th>Size</th>
+<th>Last modified</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.pytest_cache/.gitignore</td>
+<td>0.0 KB</td>
+<td>2026-10-27 08:45</td>
+</tr>
+<tr>
+<td>.pytest_cache/CACHEDIR.TAG</td>
+<td>0.2 KB</td>
+<td>2026-10-27 08:45</td>
+</tr>
+<tr>
+<td>.pytest_cache/README.md</td>
+<td>0.3 KB</td>
+<td>2026-10-27 08:45</td>
+</tr>
+<tr>
+<td>.pytest_cache/v/cache/nodeids</td>
+<td>1.1 KB</td>
+<td>2026-10-28 09:13</td>
+</tr>
+<tr>
+<td>README.md</td>
+<td>0.7 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>config.yaml</td>
+<td>1.4 KB</td>
+<td>2026-10-28 08:14</td>
+</tr>
+<tr>
+<td>conftest.py</td>
+<td>0.0 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>docs/SAMEER_GUIDE.md</td>
+<td>7.9 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>requirements.txt</td>
+<td>0.1 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>results/timing_extrapolation.csv</td>
+<td>0.1 KB</td>
+<td>2026-10-28 08:08</td>
+</tr>
+<tr>
+<td>results/timing_recommendation.md</td>
+<td>1.1 KB</td>
+<td>2026-10-28 08:08</td>
+</tr>
+<tr>
+<td>results/timing_table.csv</td>
+<td>0.6 KB</td>
+<td>2026-10-28 08:08</td>
+</tr>
+<tr>
+<td>src/<strong>init</strong>.py</td>
+<td>0.0 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>src/common.py</td>
+<td>2.4 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>src/make_documentation.py</td>
+<td>20.6 KB</td>
+<td>2026-10-28 09:36</td>
+</tr>
+<tr>
+<td>src/metrics.py</td>
+<td>3.8 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>src/models.py</td>
+<td>1.4 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>src/run_experiments.py</td>
+<td>9.6 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>src/synthetic.py</td>
+<td>3.8 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>src/timing_test.py</td>
+<td>10.6 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>tests/test_metrics.py</td>
+<td>3.2 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>tests/test_models.py</td>
+<td>1.7 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+<tr>
+<td>tests/test_runner.py</td>
+<td>2.4 KB</td>
+<td>2026-10-27 08:18</td>
+</tr>
+</tbody>
+</table>
+<p>What each part is for:</p>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Purpose</th>
+<th>Task</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>src/common.py</td>
+<td>Fixed class order, 10 feature names, seeds, protocol names, config hash, data loader</td>
+<td>shared</td>
+</tr>
+<tr>
+<td>src/metrics.py</td>
+<td>Evaluation metrics written from the formulas</td>
+<td>M1</td>
+</tr>
+<tr>
+<td>tests/test_metrics.py</td>
+<td>8 tests: metrics must equal scikit-learn</td>
+<td>M1</td>
+</tr>
+<tr>
+<td>src/models.py</td>
+<td>Builders for LR, DT, RF</td>
+<td>M2</td>
+</tr>
+<tr>
+<td>config.yaml</td>
+<td>All hyperparameters and the two safety flags (frozen, tolerance_fixed)</td>
+<td>M2 / M3</td>
+</tr>
+<tr>
+<td>tests/test_models.py</td>
+<td>4 tests: seeds, class weights, scaler fitted on training side only</td>
+<td>M2</td>
+</tr>
+<tr>
+<td>src/timing_test.py</td>
+<td>Timing and RAM test on synthetic data, extrapolation, RF recommendation</td>
+<td>M3</td>
+</tr>
+<tr>
+<td>results/timing_table.csv, timing_extrapolation.csv, timing_recommendation.md</td>
+<td>Output of the real timing test</td>
+<td>M3</td>
+</tr>
+<tr>
+<td>src/run_experiments.py</td>
+<td>Experiment runner: models x protocols x seeds -&gt; results/runs.csv</td>
+<td>M4</td>
+</tr>
+<tr>
+<td>tests/test_runner.py</td>
+<td>5 tests: columns, resume, invalid splits, real-run guard, label mapping</td>
+<td>M4</td>
+</tr>
+<tr>
+<td>src/synthetic.py</td>
+<td>Synthetic CAN-like data and DUMMY splits, only for tests and dry runs</td>
+<td>M3 / M4</td>
+</tr>
+<tr>
+<td>results/runs.csv (future)</td>
+<td>Real results, appended by the runner (does not exist yet)</td>
+<td>M5</td>
+</tr>
+<tr>
+<td>docs/</td>
+<td>This documentation and SAMEER_GUIDE.md</td>
+<td>all</td>
+</tr>
+</tbody>
+</table>
+<h2>2. Environment (LIVE)</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>3.13.18</td>
+</tr>
+<tr>
+<td>Platform</td>
+<td>Linux-6.6.159+-x86_64-with-glibc2.39</td>
+</tr>
+<tr>
+<td>CPU cores</td>
+<td>2</td>
+</tr>
+<tr>
+<td>RAM total</td>
+<td>12.7 GB</td>
+</tr>
+<tr>
+<td>numpy</td>
+<td>2.1.3</td>
+</tr>
+<tr>
+<td>pandas</td>
+<td>2.2.3</td>
+</tr>
+<tr>
+<td>sklearn</td>
+<td>1.6.1</td>
+</tr>
+<tr>
+<td>yaml</td>
+<td>6.0.3</td>
+</tr>
+<tr>
+<td>pyarrow</td>
+<td>23.0.1</td>
+</tr>
+</tbody>
+</table>
+<h2>3. What happened, in order</h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>What</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22 to 26 Oct 2026</td>
+<td>Sprint 1 started late; work split tracker and proposal read</td>
+<td>Plan: M1 to M5 for the models track</td>
+</tr>
+<tr>
+<td>27 Oct 2026</td>
+<td>M1 to M4 code written and tested (17 tests); tools set up in Google Colab with the project on Drive</td>
+<td>All tests passed</td>
+</tr>
+<tr>
+<td>27 Oct 2026</td>
+<td>Small timing check (20k and 60k rows) on Colab to prove the script runs</td>
+<td>Worked; numbers not used</td>
+</tr>
+<tr>
+<td>28 Oct 2026</td>
+<td>Real timing test on 1,000,000 and 4,000,000 synthetic rows, target 14,000,000</td>
+<td>See section 7</td>
+</tr>
+<tr>
+<td>28 Oct 2026</td>
+<td>RF settings chosen and written into config.yaml, frozen set to true</td>
+<td>See section 6</td>
+</tr>
+<tr>
+<td>28 Oct 2026</td>
+<td>Tests re-run and runner dry run executed twice (second time all runs skipped = resume works)</td>
+<td>17 passed; resume confirmed</td>
+</tr>
+<tr>
+<td>Pending</td>
+<td>M5 first real run</td>
+<td>Blocked: frames.parquet, split files, supervisor decision S3 (tolerance)</td>
+</tr>
+</tbody>
+</table>
+<h2>4. Task by task</h2>
+<h3>M1 - Metrics (<code>src/metrics.py</code>, <code>tests/test_metrics.py</code>)</h3>
+<p><strong>What:</strong> the evaluation numbers of the proposal, written from the formulas and not imported from a library.</p>
+<p><strong>Formulas used</strong> (rows of the confusion matrix = true class, columns = predicted class):</p>
+<ul>
+<li>precision_c = TP / (TP + FP); recall_c = TP / (TP + FN); F1_c = 2TP / (2TP + FP + FN)</li>
+<li>macro-F1 = (1/C) x sum of F1_c over all C = 5 classes; accuracy = correct / all</li>
+<li>class weight w_c = N / (C x N_c) on the training side (equals scikit-learn <code>class_weight='balanced'</code>)</li>
+<li>all-Normal baseline: macro-F1 = 2 pi / (C (1 + pi)), accuracy = pi, where pi is the Normal share of the test set</li>
+</ul>
+<p><strong>Decisions:</strong> a class with no true frames has recall shown as blank (NaN), not 0; a class never predicted has precision blank; F1 of an undefined class counts as 0, so macro-F1 always averages over all 5 classes (same as scikit-learn with zero_division=0).</p>
+<p><strong>Check against the tracker:</strong> the tests confirm that pi = 0.9944 and C = 5 give 0.1994. Note that 0.9944 is the CICIoV2024 share from the base paper; the HCRL Normal share will be different, so every real run prints its own baseline.</p>
+<p><strong>Functions (LIVE, read from the source):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>confusion_matrix</td>
+<td></td>
+</tr>
+<tr>
+<td>per_class</td>
+<td>Per-class precision, recall, F1 and support from a confusion matrix.</td>
+</tr>
+<tr>
+<td>macro_f1</td>
+<td></td>
+</tr>
+<tr>
+<td>accuracy</td>
+<td></td>
+</tr>
+<tr>
+<td>trivial_baseline_macro_f1</td>
+<td>Macro-F1 of 'always predict Normal': 2*pi / (C * (1 + pi)). Accuracy = pi.</td>
+</tr>
+<tr>
+<td>class_weights</td>
+<td>w_c = N / (C * N_c) on the training side (proposal Step 6).</td>
+</tr>
+<tr>
+<td>evaluate</td>
+<td>One flat dict of everything a results row needs.</td>
+</tr>
+<tr>
+<td>all_normal_baseline</td>
+<td>Empirical all-Normal predictor on the given labels (should match the formula).</td>
+</tr>
+</tbody>
+</table>
+<h3>M2 - Models and config (<code>src/models.py</code>, <code>config.yaml</code>, <code>tests/test_models.py</code>)</h3>
+<p><strong>What:</strong> the three models, built from one place with settings that come only from <code>config.yaml</code>.</p>
+<ul>
+<li><strong>LR:</strong> StandardScaler + LogisticRegression, inside one pipeline, so the scaler is fitted on the training rows only.</li>
+<li><strong>DT:</strong> DecisionTreeClassifier on the raw integer columns, no depth limit.</li>
+<li><strong>RF:</strong> RandomForestClassifier on the raw integer columns, bootstrap on, <code>max_samples</code> set from the M3 test.</li>
+<li>All three: <code>class_weight='balanced'</code>, <code>random_state</code> = the run's seed (42 to 46). Same settings for P1 and P2.</li>
+</ul>
+<p><strong>Safety flags in config.yaml:</strong> <code>frozen</code> (RF settings written down) and <code>validity.tolerance_fixed</code> (supervisor decision at S3). The runner refuses to touch real data until both are true.</p>
+<p><strong>Function (LIVE):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>build_model</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>M3 - Timing and memory test (<code>src/timing_test.py</code>)</h3>
+<p><strong>What:</strong> shows whether LR, DT and RF can be trained on about 14 million rows with the RAM and time available, without looking at any real label.</p>
+<p><strong>How it works:</strong> it generates synthetic CAN-like data (10 columns, 5 classes), fits each model in its own subprocess at each size (so memory numbers are clean), records fit time, prediction time, peak RAM and tree size, extrapolates to the target size (time: log-log fit; RAM: linear fit), and tests Random Forest candidates (n_estimators, max_samples) against a time budget (60 min per fit) and a RAM budget. Results are written to new files and never overwrite old ones.</p>
+<p><strong>Command used:</strong> <code>python -m src.timing_test --sizes 1000000 4000000 --target 14000000 --ram-gb 9 --cores 2 --budget-min 60</code></p>
+<p><strong>Limits (say these in the report):</strong> synthetic data only has the right shape, so real tree size and time may differ; estimates are rough and optimistic. The first real RF run gives the true time.</p>
+<h3>M4 - Experiment runner (<code>src/run_experiments.py</code>, <code>tests/test_runner.py</code>)</h3>
+<p><strong>What:</strong> runs every (model, protocol, seed) combination and appends one row per run to <code>results/runs.csv</code>.</p>
+<p><strong>Input assumptions (to be confirmed with the teammates):</strong> <code>data/frames.parquet</code> with columns id, dlc, d0 to d7, label (names Normal/DoS/Fuzzy/RPM/Gear or 0 to 4); split files <code>splits/P1_seed42.npy</code> and <code>splits/P2_seed42.npy</code> (and 43 to 46) holding the TEST row positions; training rows are all other rows.</p>
+<p><strong>Behaviour:</strong>
+- One row per run with date, model, protocol, seed, status, validity, accuracy, macro-F1, per-class precision, recall and F1, n_train, n_test, Normal share of the test set, the all-Normal baseline, fit and predict seconds, missing classes, config hash, note.
+- A safety-net validity check per split: every class present in train and test and inside the test-share tolerance; an invalid split is recorded as <code>skipped_invalid</code> and not trained (proposal: invalid splits are not forced into the comparison).
+- Resume: finished runs are skipped when the same command is started again; a crashed run is stored as <code>error</code> and retried.
+- The results file is only appended to, never rewritten; one confusion matrix per run is saved in <code>results/confusion/</code>.
+- Guards: a real run is refused until <code>frozen</code> and <code>tolerance_fixed</code> are true; dry runs cannot write to <code>runs.csv</code>.
+- Convergence warnings (for example from LR) are written into the <code>note</code> column.</p>
+<p><strong>Functions (LIVE):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>check_split</td>
+<td>Safety net only. Raahim's validity_report.csv stays the official record.</td>
+</tr>
+<tr>
+<td>load_test_idx</td>
+<td></td>
+</tr>
+<tr>
+<td>_finished_keys</td>
+<td></td>
+</tr>
+<tr>
+<td>_append</td>
+<td></td>
+</tr>
+<tr>
+<td>run_experiments</td>
+<td></td>
+</tr>
+<tr>
+<td>main</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>5. Fixed configuration (LIVE, <code>config.yaml</code>)</h2>
+<pre><code class="language-yaml"># Fixed experiment settings (task M2). Written down BEFORE any real result is seen.
+# Same settings for P1 and P2. Change nothing here after the first real run.
+version: 1
+
+# The runner refuses to touch real data until BOTH flags below are true.
+frozen: true             # RF settings fixed after M3, 28 Oct 2026
+validity:
+  tolerance_fixed: false   # set to true after the supervisor meeting S3 (Thu 29 Oct)
+  min_test_share: 0.10     # provisional; per class, test frames / all frames of the class
+  max_test_share: 0.30
+  on_invalid: skip         # skip = record the split as invalid and do not train (proposal Step 3)
+                           # run  = train anyway (only after the team agrees a rule at S3)
+
+classes: [Normal, DoS, Fuzzy, RPM, Gear]
+seeds: [42, 43, 44, 45, 46]
+split_files: &quot;splits/{protocol}_seed{seed}.npy&quot;   # test-row indices into frames.parquet; CONFIRM with Raahim
+
+models:
+  LR:
+    C: 1.0
+    solver: lbfgs
+    max_iter: 200
+    tol: 0.0001
+    class_weight: balanced
+  DT:
+    criterion: gini
+    max_depth: null
+    min_samples_leaf: 1
+    class_weight: balanced
+  RF:
+    n_estimators: 100      # fixed after M3 timing test, 28 Oct 2026
+    max_samples: 0.5       # fixed after M3 timing test, 28 Oct 2026; same for P1 and P2
+    max_depth: null
+    min_samples_leaf: 1
+    bootstrap: true
+    class_weight: balanced
+
+runtime:                   # hardware only, does not change results
+  n_jobs: -1
+</code></pre>
+<p>SHA-256 of config.yaml (first 12 characters): <code>e9a62c75c94a</code> (the runner stores its own hash of the model section and seeds in every result row).</p>
+<h2>6. Decision on the Random Forest settings</h2>
+<p>The timing test recommended the first candidate inside the budgets. The team member chose one row lower: <strong>n_estimators = 100, max_samples = 0.5</strong>, because the estimate for full-size samples is above half of the 60-minute budget, estimates from synthetic data are optimistic, and 10 RF runs are needed (2 protocols x 5 seeds). The settings are identical for P1 and P2 and were fixed before any real result existed. The report must state that each tree sees half of the training rows.</p>
+<h2>7. Timing test results (LIVE)</h2>
+<p>File: <code>results/timing_recommendation.md</code> (last modified 2026-10-28 08:08)</p>
+<h4>Timing and memory test (2026-10-28 08:08)</h4>
+<p>Machine: cores=2, RAM total 12.7 GB, RAM budget 9.0 GB. Synthetic data, sizes 1,000,000, 4,000,000 rows x 10 columns. Extrapolated to 14,000,000 training rows (time: log-log fit, RAM: linear fit; rough).</p>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>est. fit time (1 core)</th>
+<th>est. peak RAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LR</td>
+<td>2.1 min (1 core)</td>
+<td>3.6 GB</td>
+</tr>
+<tr>
+<td>DT</td>
+<td>3.3 min (1 core)</td>
+<td>1.2 GB</td>
+</tr>
+<tr>
+<td>RF</td>
+<td>76.0 min (100 full trees, 1 core)</td>
+<td>2.1 GB</td>
+</tr>
+</tbody>
+</table>
+<h5>Random Forest candidates (budget 60 min per fit, 9 GB RAM)</h5>
+<table>
+<thead>
+<tr>
+<th>n_estimators</th>
+<th>max_samples</th>
+<th>est. wall time (min)</th>
+<th>est. RAM (GB)</th>
+<th>fits budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>null (full)</td>
+<td>48</td>
+<td>2.8</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>100</td>
+<td>0.5</td>
+<td>21</td>
+<td>2.5</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>100</td>
+<td>0.25</td>
+<td>9</td>
+<td>2.3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>50</td>
+<td>0.25</td>
+<td>5</td>
+<td>2.2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>100</td>
+<td>0.1</td>
+<td>3</td>
+<td>2.2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>50</td>
+<td>0.1</td>
+<td>2</td>
+<td>2.1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>25</td>
+<td>0.1</td>
+<td>1</td>
+<td>2.1</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommendation:</strong> n_estimators=100, max_samples=null (first candidate inside both budgets). Put these in config.yaml, then set frozen: true. Use the same values for P1 and P2.</p>
+<p>Caveat: synthetic data only has the right shape. Re-check with the real number of signatures from the audit (H3).</p>
+<p>Raw measurements: <code>results/timing_table.csv</code></p>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>n_rows</th>
+<th>n_estimators</th>
+<th>fit_s</th>
+<th>predict_s</th>
+<th>rss_peak_fit_mb</th>
+<th>nodes_per_tree</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LR</td>
+<td>1000000</td>
+<td></td>
+<td>8.15</td>
+<td>0.111</td>
+<td>441.9</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>LR</td>
+<td>4000000</td>
+<td></td>
+<td>34.102</td>
+<td>0.107</td>
+<td>1199.4</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>DT</td>
+<td>1000000</td>
+<td></td>
+<td>8.54</td>
+<td>0.109</td>
+<td>262.1</td>
+<td>9389.0</td>
+</tr>
+<tr>
+<td>DT</td>
+<td>4000000</td>
+<td></td>
+<td>44.225</td>
+<td>0.104</td>
+<td>486.3</td>
+<td>14081.0</td>
+</tr>
+<tr>
+<td>RF</td>
+<td>1000000</td>
+<td>8</td>
+<td>15.781</td>
+<td>0.63</td>
+<td>305.2</td>
+<td>10564.0</td>
+</tr>
+<tr>
+<td>RF</td>
+<td>4000000</td>
+<td>8</td>
+<td>82.164</td>
+<td>0.699</td>
+<td>720.0</td>
+<td>15082.0</td>
+</tr>
+</tbody>
+</table>
+<p>Other timing files present (earlier runs are kept, never overwritten): <code>timing_extrapolation.csv</code></p>
+<h2>8. Test results (LIVE, executed now)</h2>
+<p>Summary: <strong>17 passed in 3.00s</strong></p>
+<p><code>tests/test_metrics.py</code></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test_confusion_matrix_matches_sklearn</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_per_class_and_macro_match_sklearn</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_perfect_prediction</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_all_normal_baseline_matches_proposal_number</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_all_normal_baseline_formula_equals_empirical</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_undefined_cases_are_explicit</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_class_weights_match_sklearn_balanced</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_bad_labels_rejected</td>
+<td>PASSED</td>
+</tr>
+</tbody>
+</table>
+<p><code>tests/test_models.py</code></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test_builders_and_seeds</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_scaler_fitted_on_training_side_only</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_same_seed_same_predictions</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_unknown_model_rejected</td>
+<td>PASSED</td>
+</tr>
+</tbody>
+</table>
+<p><code>tests/test_runner.py</code></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test_dry_run_columns_resume_and_invalid_handling</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_invalid_split_is_recorded_not_forced</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_check_split_counts</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_real_run_refused_until_frozen_and_tolerance_fixed</td>
+<td>PASSED</td>
+</tr>
+<tr>
+<td>test_label_strings_are_mapped</td>
+<td>PASSED</td>
+</tr>
+</tbody>
+</table>
+<h2>9. Runner dry run (LIVE, synthetic data only, executed now)</h2>
+<p>A small dry run on 20,000 synthetic rows. <strong>These numbers mean nothing for the project</strong>, they only prove that the code works, writes the expected columns and resumes correctly.</p>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>protocol</th>
+<th>seed</th>
+<th>status</th>
+<th>valid</th>
+<th>accuracy</th>
+<th>macro_f1</th>
+<th>baseline_macro_f1</th>
+<th>fit_seconds</th>
+<th>n_train</th>
+<th>n_test</th>
+<th>note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LR</td>
+<td>P1</td>
+<td>42</td>
+<td>ok</td>
+<td>True</td>
+<td>0.5427</td>
+<td>0.4082</td>
+<td>0.1841</td>
+<td>0.2300</td>
+<td>16000</td>
+<td>4000</td>
+<td>DeprecationWarning</td>
+</tr>
+<tr>
+<td>DT</td>
+<td>P1</td>
+<td>42</td>
+<td>ok</td>
+<td>True</td>
+<td>0.9647</td>
+<td>0.8766</td>
+<td>0.1841</td>
+<td>0.1200</td>
+<td>16000</td>
+<td>4000</td>
+<td></td>
+</tr>
+<tr>
+<td>RF</td>
+<td>P1</td>
+<td>42</td>
+<td>ok</td>
+<td>True</td>
+<td>0.9640</td>
+<td>0.8209</td>
+<td>0.1841</td>
+<td>1.6400</td>
+<td>16000</td>
+<td>4000</td>
+<td></td>
+</tr>
+<tr>
+<td>LR</td>
+<td>P2</td>
+<td>42</td>
+<td>ok</td>
+<td>True</td>
+<td>0.4713</td>
+<td>0.3955</td>
+<td>0.1865</td>
+<td>0.8800</td>
+<td>15994</td>
+<td>4006</td>
+<td>DeprecationWarning</td>
+</tr>
+<tr>
+<td>DT</td>
+<td>P2</td>
+<td>42</td>
+<td>ok</td>
+<td>True</td>
+<td>0.7806</td>
+<td>0.7907</td>
+<td>0.1865</td>
+<td>0.1800</td>
+<td>15994</td>
+<td>4006</td>
+<td></td>
+</tr>
+<tr>
+<td>RF</td>
+<td>P2</td>
+<td>42</td>
+<td>ok</td>
+<td>True</td>
+<td>0.9596</td>
+<td>0.7949</td>
+<td>0.1865</td>
+<td>2.2000</td>
+<td>15994</td>
+<td>4006</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Columns in the results file (33): <code>date</code>, <code>model</code>, <code>protocol</code>, <code>seed</code>, <code>status</code>, <code>valid</code>, <code>accuracy</code>, <code>macro_f1</code>, <code>recall_Normal</code>, <code>recall_DoS</code>, <code>recall_Fuzzy</code>, <code>recall_RPM</code>, <code>recall_Gear</code>, <code>precision_Normal</code>, <code>precision_DoS</code>, <code>precision_Fuzzy</code>, <code>precision_RPM</code>, <code>precision_Gear</code>, <code>f1_Normal</code>, <code>f1_DoS</code>, <code>f1_Fuzzy</code>, <code>f1_RPM</code>, <code>f1_Gear</code>, <code>n_train</code>, <code>n_test</code>, <code>pi_N_test</code>, <code>baseline_macro_f1</code>, <code>fit_seconds</code>, <code>predict_seconds</code>, <code>missing_train</code>, <code>missing_test</code>, <code>config_hash</code>, <code>note</code></p>
+<p>Second start of the same command (resume check):</p>
+<pre><code>DRY RUN on 20,000 synthetic rows -&gt; /tmp/doc_dryrun_gebhoq1d/dry.csv
+[skip] P1 seed 42: all models already in dry.csv
+[skip] P2 seed 42: all models already in dry.csv
+</code></pre>
+<p>Guard check: starting a REAL run with the current config gives exit code <code>2</code>:</p>
+<pre><code>Refusing to run on real data:
+  - config.yaml: validity.tolerance_fixed is false (decide at S3, Thu 29 Oct)
+</code></pre>
+<h2>10. Rules followed and known limits</h2>
+<table>
+<thead>
+<tr>
+<th>Rule or limit</th>
+<th>How it is handled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No real data before the tolerance is fixed (ground rule 3)</td>
+<td>Runner refuses real runs until <code>tolerance_fixed</code> is true; all M1 to M4 work used synthetic data only</td>
+</tr>
+<tr>
+<td>Hyperparameters fixed before results (ground rule 4)</td>
+<td><code>frozen: true</code> written after the timing test and before any real result; same values for P1 and P2</td>
+</tr>
+<tr>
+<td>Results files are never overwritten (ground rule 6)</td>
+<td>Timing files get a timestamp if a file exists; runner only appends; confusion matrices are not overwritten</td>
+</tr>
+<tr>
+<td>Check results in order (ground rule 8)</td>
+<td>Procedure in docs/SAMEER_GUIDE.md, Step 9</td>
+</tr>
+<tr>
+<td>Timing estimates</td>
+<td>From synthetic data, rough and optimistic; re-check with the real number of signatures and on the first real RF run</td>
+</tr>
+<tr>
+<td>Input formats</td>
+<td>Assumed (see M4); to be confirmed with the teammates who produce frames.parquet and the split files</td>
+</tr>
+<tr>
+<td>LR convergence on 14M real rows</td>
+<td>Not tested on real data; a ConvergenceWarning is recorded in the <code>note</code> column and must be reported, not hidden by changing max_iter afterwards</td>
+</tr>
+<tr>
+<td>Dummy splits in src/synthetic.py</td>
+<td>Only for dry runs; the official splits come from the splits track</td>
+</tr>
+</tbody>
+</table>
+<h2>11. Status and sign-off</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Built</th>
+<th>Tested</th>
+<th>Teammate check (name, date)</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1 metrics</td>
+<td>yes</td>
+<td>yes (see section 8)</td>
+<td></td>
+<td>Done once checked</td>
+</tr>
+<tr>
+<td>M2 models and config</td>
+<td>yes</td>
+<td>yes (see section 8)</td>
+<td></td>
+<td>Done once checked</td>
+</tr>
+<tr>
+<td>M3 timing test</td>
+<td>yes</td>
+<td>yes, real run done 28 Oct 2026</td>
+<td></td>
+<td>Done once checked</td>
+</tr>
+<tr>
+<td>M4 runner</td>
+<td>yes</td>
+<td>yes, dry run and resume (section 9)</td>
+<td></td>
+<td>Done once checked</td>
+</tr>
+<tr>
+<td>M5 first real run</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>Blocked: frames.parquet, splits, S3 tolerance</td>
+</tr>
+</tbody>
+</table>
+<p>What is needed next: <code>data/frames.parquet</code>, the split files, the agreed tolerance (set <code>tolerance_fixed: true</code> and the min and max test shares in <code>config.yaml</code>), then:</p>
+<pre><code>python -m src.run_experiments --seeds 42 --models LR DT
+</code></pre>
+<h2>12. How to reproduce everything</h2>
+<pre><code>%cd /content/drive/MyDrive/FYDP/files/fydp_models_sameer/fydp_models   # Colab
+pip install -r requirements.txt
+python -m pytest -v
+python -m src.timing_test --sizes 1000000 4000000 --target 14000000 --ram-gb 9 --cores 2 --budget-min 60
+python -m src.run_experiments --synthetic 200000 --models LR DT RF --seeds 42
+python -m src.make_documentation
+</code></pre></body></html>
