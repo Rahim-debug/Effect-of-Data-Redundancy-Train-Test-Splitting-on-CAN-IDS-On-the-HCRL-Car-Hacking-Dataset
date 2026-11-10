@@ -5,3 +5,10 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 *.pyc
+
+data/derived/
+data/splits/
+*.parquet
+*.npy
+__pycache__/
+.venv/
