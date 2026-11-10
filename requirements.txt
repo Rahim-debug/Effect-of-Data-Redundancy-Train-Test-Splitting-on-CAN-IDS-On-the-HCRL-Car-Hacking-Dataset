@@ -4,3 +4,7 @@ pyarrow
 scikit-learn
 matplotlib
 jupyter
+pyyaml
+psutil
+pytest
+markdown

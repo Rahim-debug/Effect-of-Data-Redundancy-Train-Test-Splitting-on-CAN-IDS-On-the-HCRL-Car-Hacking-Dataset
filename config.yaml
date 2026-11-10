@@ -1,0 +1,39 @@
+# Fixed experiment settings (task M2). Written down BEFORE any real result is seen.
+# Same settings for P1 and P2. Change nothing here after the first real run.
+version: 1
+
+# The runner refuses to touch real data until BOTH flags below are true.
+frozen: true             # RF settings fixed after M3, 28 Oct 2026
+validity:
+  tolerance_fixed: false   # set to true after the supervisor meeting S3 (Thu 29 Oct)
+  min_test_share: 0.10     # provisional; per class, test frames / all frames of the class
+  max_test_share: 0.30
+  on_invalid: skip         # skip = record the split as invalid and do not train (proposal Step 3)
+                           # run  = train anyway (only after the team agrees a rule at S3)
+
+classes: [Normal, DoS, Fuzzy, RPM, Gear]
+seeds: [42, 43, 44, 45, 46]
+split_files: "splits/{protocol}_seed{seed}.npy"   # test-row indices into frames.parquet; CONFIRM with Raahim
+
+models:
+  LR:
+    C: 1.0
+    solver: lbfgs
+    max_iter: 200
+    tol: 0.0001
+    class_weight: balanced
+  DT:
+    criterion: gini
+    max_depth: null
+    min_samples_leaf: 1
+    class_weight: balanced
+  RF:
+    n_estimators: 100      # fixed after M3 timing test, 28 Oct 2026
+    max_samples: 0.5       # fixed after M3 timing test, 28 Oct 2026; same for P1 and P2
+    max_depth: null
+    min_samples_leaf: 1
+    bootstrap: true
+    class_weight: balanced
+
+runtime:                   # hardware only, does not change results
+  n_jobs: -1
